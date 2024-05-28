@@ -1,6 +1,6 @@
 {
   "name": "@fbp/litegraph",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "description": "litegraph",
   "main": "index.js",
@@ -29,7 +29,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@fbp/types": "^0.1.0"
+    "@fbp/types": "^0.2.0"
   },
   "keywords": []
 }

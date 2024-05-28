@@ -1,6 +1,6 @@
 {
   "name": "@fbp/editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,11 +17,11 @@
   "dependencies": {
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
+    "@fbp/litegraph": "^0.2.0",
+    "@fbp/types": "^0.2.0",
     "@interchain-ui/react": "^1.21.16",
-    "@fbp/types": "^0.1.0",
-    "@fbp/litegraph": "^0.1.0",
-    "litegraph.js": "^0.7.18",
     "framer-motion": "9.0.7",
+    "litegraph.js": "^0.7.18",
     "next": "^13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
