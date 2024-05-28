@@ -5,9 +5,10 @@ import { Litegraph, LitegraphLink, LitegraphNode } from './types';
 export function convertToLitegraph(graph: Graph): Litegraph {
   const nodes: LitegraphNode[] = graph.nodes.map((node, index) => ({
     id: index,  // Assign an incremental ID based on the array index
-    type: node.type,
-    title: node.title,
-    pos: [node.meta?.x || 0, node.meta?.y || 0],
+    type: [node.context, node.category, node.type].join('/'),
+    title: node.name,
+    // Ensure pos is always a tuple of [number, number]
+    pos: [node.meta?.x || 0, node.meta?.y || 0] as [number, number],
     value: node.properties?.reduce((acc, prop) => ({ ...acc, [prop.name]: prop.value }), undefined),
     inputs: node.inputs.map(input => ({
       name: input.name,
@@ -51,31 +52,35 @@ export function convertToLitegraph(graph: Graph): Litegraph {
   return { nodes, links };
 }
 
+
 export function convertFromLitegraph(litegraph: Litegraph): Graph {
-  const nodes: Node[] = litegraph.nodes.map(node => ({
-    name: node.title,
-    title: node.title,
-    context: 'Converted', // Placeholder, adjust as necessary
-    category: 'Converted', // Placeholder, adjust as necessary
-    type: node.type,
-    meta: {
-      x: node.pos[0],
-      y: node.pos[1]
-    },
-    inputs: node.inputs?.map(input => ({
-      name: input.name,
-      type: input.type
-    })) || [],
-    outputs: node.outputs?.map(output => ({
-      name: output.name,
-      type: output.type
-    })) || [],
-    properties: node.value ? Object.keys(node.value).map(key => ({
-      name: key,
-      type: typeof node.value[key], // Assumes all values are singular types
-      value: node.value[key]
-    })) : []
-  }));
+  const nodes: Node[] = litegraph.nodes.map(node => {
+    const [context,category,type] = node.type.split('/');
+    const lightNode: Node = {
+      name: node.title,
+      context,
+      category,
+      type,
+      meta: {
+        x: node.pos[0],
+        y: node.pos[1]
+      },
+      inputs: node.inputs?.map(input => ({
+        name: input.name,
+        type: input.type
+      })) || [],
+      outputs: node.outputs?.map(output => ({
+        name: output.name,
+        type: output.type
+      })) || [],
+      properties: node.value ? Object.keys(node.value).map(key => ({
+        name: key,
+        type: typeof node.value[key], // Assumes all values are singular types
+        value: node.value[key]
+      })) : []
+    };
+    return lightNode;
+  });
 
   const edges: Edge[] = litegraph.links.map(link => ({
     src: {
@@ -89,10 +94,9 @@ export function convertFromLitegraph(litegraph: Litegraph): Graph {
   }));
 
   return {
-    category: 'coverted',
+    category: 'default',
     context: 'default',
-    name: 'myGraph',
-    title: 'mygraph',
+    name: 'default',
     type: 'Graph',
     nodes,
     edges

@@ -19,7 +19,6 @@ export interface Group {
 }
 export interface Node {
   name: string;
-  title: string;
   context: string;
   category: string;
   type: string;
