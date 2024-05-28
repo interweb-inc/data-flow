@@ -19,8 +19,6 @@ export interface Group {
 }
 export interface Node {
   name: string;
-  context: string;
-  category: string;
   type: string;
   properties?: Value[];
   inputs?: Value[];

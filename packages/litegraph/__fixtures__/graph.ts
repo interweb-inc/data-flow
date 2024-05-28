@@ -1,16 +1,12 @@
 import { Graph } from '@fbp/types';
 
 export const graph: Graph = {
-  category: 'default',
-  context: 'default',
   type: 'Graph',
   name: 'default',
   nodes: [
     {
       name: 'add1',
-      type: 'add',
-      category: 'math',
-      context: 'js',
+      type: 'js/math/add',
       inputs: [
         {
           name: 'A',
@@ -35,9 +31,7 @@ export const graph: Graph = {
     },
     {
       name: 'mult1',
-      type: 'mult',
-      category: 'math',
-      context: 'js',
+      type: 'js/math/mult',
       inputs: [
         {
           name: 'Sum',

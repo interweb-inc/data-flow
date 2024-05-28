@@ -1,6 +1,6 @@
 import { Litegraph } from '../src';
 
-export const lightgraph: Litegraph = {
+export const litegraph: Litegraph = {
   nodes: [
     {
       id: 0,

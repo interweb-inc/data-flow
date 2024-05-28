@@ -5,21 +5,21 @@ import { Litegraph, LitegraphLink, LitegraphNode } from './types';
 export function convertToLitegraph(graph: Graph): Litegraph {
   const nodes: LitegraphNode[] = graph.nodes.map((node, index) => ({
     id: index,  // Assign an incremental ID based on the array index
-    type: [node.context, node.category, node.type].join('/'),
+    type: node.type,
     title: node.name,
     // Ensure pos is always a tuple of [number, number]
     pos: [node.meta?.x || 0, node.meta?.y || 0] as [number, number],
     value: node.properties?.reduce((acc, prop) => ({ ...acc, [prop.name]: prop.value }), undefined),
-    inputs: node.inputs.map(input => ({
+    inputs: node.inputs?.map(input => ({
       name: input.name,
       type: input.type,
       link: null  // Initial null, to be populated in the links processing
-    })),
-    outputs: node.outputs.map(output => ({
+    })) ?? [],
+    outputs: node.outputs?.map(output => ({
       name: output.name,
       type: output.type,
       links: []  // Initial empty array, to be populated in the links processing
-    }))
+    })) ?? []
   }));
 
   const links: LitegraphLink[] = [];
@@ -55,12 +55,9 @@ export function convertToLitegraph(graph: Graph): Litegraph {
 
 export function convertFromLitegraph(litegraph: Litegraph): Graph {
   const nodes: Node[] = litegraph.nodes.map(node => {
-    const [context,category,type] = node.type.split('/');
     const lightNode: Node = {
       name: node.title,
-      context,
-      category,
-      type,
+      type: node.type,
       meta: {
         x: node.pos[0],
         y: node.pos[1]
@@ -94,8 +91,6 @@ export function convertFromLitegraph(litegraph: Litegraph): Graph {
   }));
 
   return {
-    category: 'default',
-    context: 'default',
     name: 'default',
     type: 'Graph',
     nodes,

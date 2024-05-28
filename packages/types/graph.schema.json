@@ -76,12 +76,6 @@
         "name": {
           "type": "string"
         },
-        "context": {
-          "type": "string"
-        },
-        "category": {
-          "type": "string"
-        },
         "type": {
           "type": "string"
         },

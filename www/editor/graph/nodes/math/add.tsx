@@ -3,10 +3,9 @@ import { LGraphNode, LiteGraph } from 'litegraph.js';
 export class AddNode extends LGraphNode {
   constructor() {
     super();
-    this.addInput('A', 'number');
-    this.addInput('B', 'number');
-    this.addOutput('Sum', 'number');
-    this.properties = { precision: 1 };
+    this.addInput('a', 'number');
+    this.addInput('b', 'number');
+    this.addOutput('sum', 'number');
   }
 
   onExecute() {
@@ -16,7 +15,7 @@ export class AddNode extends LGraphNode {
   }
 
   static register() {
-    AddNode.title = 'Sum';
+    AddNode.title = 'add';
     LiteGraph.registerNodeType('js/math/add', AddNode);
   }
 }

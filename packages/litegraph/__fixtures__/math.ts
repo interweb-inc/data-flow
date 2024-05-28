@@ -1,16 +1,4 @@
-import React from 'react';
-import FlowGraph from '../graph/flow-graph';
-import { NumberNode } from '../graph/nodes/const/number';
-import { AddNode } from '../graph/nodes/math/add';
-import { MultNode } from '../graph/nodes/math/mult';
-
-import { Footer, Header, Hero, Layout } from "@/components";
-import { Box, Text } from "@interchain-ui/react";
-
-import { Graph } from '@fbp/types'
-import { convertToLitegraph } from '@fbp/litegraph'
-import { LGraph, LiteGraph } from 'litegraph.js';
-
+import { Graph } from '@fbp/types';
 
 export const graph: Graph = {
   type: 'Graph',
@@ -20,7 +8,7 @@ export const graph: Graph = {
       name: 'num1',
       type: 'js/const/number',
       meta: {
-        x: 100,
+        x: 50,
         y: 200,
       },
       outputs: [
@@ -35,7 +23,7 @@ export const graph: Graph = {
       name: 'num2',
       type: 'js/const/number',
       meta: {
-        x: 250,
+        x: 350,
         y: 200,
       },
       outputs: [
@@ -60,8 +48,8 @@ export const graph: Graph = {
         },
       ],
       meta: {
-        x: 400,
-        y: 200,
+        x: 100,
+        y: 100,
       },
       outputs: [
         {
@@ -85,8 +73,8 @@ export const graph: Graph = {
         },
       ],
       meta: {
-        x: 550,
-        y: 200,
+        x: 300,
+        y: 100,
       },
       outputs: [
         {
@@ -140,24 +128,3 @@ export const graph: Graph = {
     }
   ]
 };
-
-export default function Flow() {
-  const nodeDefinitions = [
-    AddNode.register,
-    MultNode.register,
-    NumberNode.register
-  ];
-
-  // Example of initial graph data
-  const initialGraphData = convertToLitegraph(graph);
-  return (
-    // @ts-ignore
-    <Layout>
-       {/* @ts-ignore */}
-      <Box mt="$12">
-       {/* @ts-ignore */}
-      <FlowGraph nodeDefinitions={nodeDefinitions} initialGraphData={initialGraphData} />
-      </Box>
-    </Layout>
-  );
-}
