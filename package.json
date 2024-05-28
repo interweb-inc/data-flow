@@ -5,7 +5,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/cosmology-tech/data-flow"
+    "url": "https://github.com/interweb-inc/data-flow"
   },
   "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {

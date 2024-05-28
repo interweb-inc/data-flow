@@ -12,7 +12,7 @@
   "registry": "https://registry.npmjs.org",
   "command": {
     "create": {
-      "homepage": "https://github.com/cosmology-tech/data-flow",
+      "homepage": "https://github.com/interweb-inc/data-flow",
       "license": "SEE LICENSE IN LICENSE",
       "access": "restricted"
     },
